@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal" 
+    android:background="#81d1e3"
+    
+    >
+    <ImageButton 
+        android:id="@+id/imgbt_sousuo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sousuo"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_marginLeft="110dp"
+        android:layout_gravity="center"
+        />
+    <ImageButton 
+       android:id="@+id/imgbt_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/plus"
+        android:layout_marginLeft="110dp"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>
