@@ -53,7 +53,6 @@ public class IStudentImpl implements IStudent {
 								Toast.LENGTH_SHORT).show();
 						
 						logincon.enterBaseActivity(intent);
-						
 					}else{
 						logincon.onsetProgressBarVin(View.INVISIBLE);
 						Toast.makeText(context, "√‹¬Î¥ÌŒÛ!", Toast.LENGTH_SHORT).show();

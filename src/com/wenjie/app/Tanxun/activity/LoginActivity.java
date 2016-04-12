@@ -76,5 +76,6 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 	@Override
 	public void enterBaseActivity(Intent intent) {
 		startActivity(intent);
+		finish();
 	}
 }

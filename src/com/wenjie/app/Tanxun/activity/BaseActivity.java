@@ -5,21 +5,25 @@ import com.wenjie.app.Tanxun.activity.fragment.HomeFragment;
 import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.activity.fragment.SearchFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 /**
  * Tab切换控制界面
  * @author dell
  *
  */
 public class BaseActivity extends FragmentActivity implements OnClickListener{
+	private long exitTime = 0;
 	private LinearLayout mTabHome;
 	private LinearLayout mTabSearch;
 	private LinearLayout mTabPerson;
@@ -154,5 +158,20 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 			break;
 		}
 	}
+			
 	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){   
+	        if((System.currentTimeMillis()-exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
+	        return true;   
+	    }
+	    return super.onKeyDown(keyCode, event);
+	}  
 }
