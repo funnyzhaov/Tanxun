@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.BaseActivity"></activity>
+        <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity"></activity>
     </application>
 
 </manifest>
