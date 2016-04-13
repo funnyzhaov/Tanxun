@@ -3,6 +3,7 @@ package com.wenjie.app.Tanxun.model;
 import java.util.List;
 
 import com.wenjie.app.Tanxun.Controller.ILoginController;
+import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
 import com.wenjie.app.Tanxun.activity.BaseActivity;
 
 import android.content.Context;
@@ -79,6 +80,28 @@ public class IStudentImpl implements IStudent {
 				doLogin(stuId, stuPawd, context,logincon);
 			}
 		},3000);		
+	}
+	
+	@Override
+	public void doPersonShow(String studentId, Context context,final IStudentInfoView infoView) {
+		//通过学号查找姓名
+		 BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();
+		 query.addWhereEqualTo("studentId", studentId);
+		 query.setLimit(5);
+		 query.findObjects(context, new FindListener<StudentInfo>() {
+
+			@Override
+			public void onError(int arg0, String arg1) {
+				//Toast.makeText(getActivity(), "查询失败",Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onSuccess(List<StudentInfo> studentlist) {
+				StudentInfo studentInfo=studentlist.get(0);
+				String studentName=studentInfo.getStudentName();
+				infoView.UpdateInfoName(studentName);
+			}
+		});
 	}
 
 }

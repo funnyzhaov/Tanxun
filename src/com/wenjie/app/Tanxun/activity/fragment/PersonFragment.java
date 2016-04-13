@@ -6,6 +6,9 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
+import com.wenjie.app.Tanxun.model.IStudent;
+import com.wenjie.app.Tanxun.model.IStudentImpl;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
@@ -21,7 +24,8 @@ import android.widget.Toast;
  * @author dell
  *
  */
-public class PersonFragment extends Fragment {
+public class PersonFragment extends Fragment implements IStudentInfoView {
+	private IStudent Istudent;//处理信息查询的接口
 	private String studentId=null;
 	private String studentName="";
 	private View personView;
@@ -39,35 +43,21 @@ public class PersonFragment extends Fragment {
 	 * 初始化视图
 	 */
 	private void initView(){
+		Istudent=new IStudentImpl();
 		InBaseActivity=getActivity();
 		textStuName=(TextView)personView
 				.findViewById(R.id.text_studentName);
+		
 		studentId=InBaseActivity.getIntent().getStringExtra("studentId");
 		if(studentId!=null){
-			//通过学号查找姓名
-			 BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();
-			 query.addWhereEqualTo("studentId", studentId);
-			 query.setLimit(5);
-			 query.findObjects(InBaseActivity, new FindListener<StudentInfo>() {
-
-				@Override
-				public void onError(int arg0, String arg1) {
-					Toast.makeText(getActivity(), "查询失败",Toast.LENGTH_SHORT).show();
-				}
-
-				@Override
-				public void onSuccess(List<StudentInfo> studentlist) {
-					StudentInfo studentInfo=studentlist.get(0);
-					studentName=studentInfo.getStudentName();
-					//更新UI线程问题待解决
-					//。。。。。。
-					Toast.makeText(getActivity(), studentName,Toast.LENGTH_SHORT).show();
-					textStuName.setText(studentName);
-				}
-			});
+			Istudent.doPersonShow(studentId, InBaseActivity,this);
 		}else{
 			textStuName.setText("未登录");
 		}
 		
+	}
+	@Override
+	public void UpdateInfoName(String studentName) {
+		textStuName.setText(studentName);
 	}
 }

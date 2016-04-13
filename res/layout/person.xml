@@ -5,7 +5,7 @@
     android:orientation="vertical" >
      <include layout="@layout/home_top"/>
    <LinearLayout
-       
+       	android:id="@+id/modify_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
@@ -17,7 +17,9 @@
             android:layout_width="120dip"
             android:layout_height="150dip"
             android:layout_gravity="left"
-            android:src="@drawable/head" />
+            android:src="@drawable/head" 
+            android:clickable="false"
+            />
 
         <TextView
             android:id="@+id/text_studentName"
@@ -30,7 +32,9 @@
             android:id="@+id/image_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right"/>
+            android:src="@drawable/arrow_right"
+            android:clickable="false"
+            />
     </LinearLayout>
 
     <LinearLayout
