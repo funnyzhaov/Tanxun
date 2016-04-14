@@ -10,4 +10,8 @@ public interface IStudentInfoView {
 	 * @param studentName
 	 */
 	void UpdateInfoName(String studentName);
+	/**
+	 * ¸üÐÂÍ·Ïñ
+	 */
+	void updateInfoImage(String imagePath);
 }

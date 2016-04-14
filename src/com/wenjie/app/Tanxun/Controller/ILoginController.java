@@ -1,5 +1,6 @@
 package com.wenjie.app.Tanxun.Controller;
 
+import cn.bmob.v3.datatype.BmobFile;
 import android.content.Intent;
 
 /**
@@ -17,5 +18,9 @@ public interface ILoginController {
 	 * 进入主界面
 	 */
 	void enterBaseActivity(Intent intent);
+	/**
+	 * 启动下载个人头像的后台服务
+	 */
+	void startServiceForupload(BmobFile fileIcon);
 	
 }

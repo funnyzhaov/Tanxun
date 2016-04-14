@@ -1,11 +1,13 @@
 package com.wenjie.app.Tanxun.activity;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.datatype.BmobFile;
 
 import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.Controller.ILoginController;
 import com.wenjie.app.Tanxun.model.IStudent;
 import com.wenjie.app.Tanxun.model.IStudentImpl;
+import com.wenjie.app.Tanxun.service.UploadIconService;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -77,5 +79,17 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 	public void enterBaseActivity(Intent intent) {
 		startActivity(intent);
 		finish();
+	}
+	
+	@Override
+	public void startServiceForupload(BmobFile fileIcon) {
+		Intent intentService=new Intent(this,UploadIconService.class);
+		String IconUrl=fileIcon.getFileUrl(this);
+		String fileName=fileIcon.getFilename();
+		intentService.putExtra("IconUrl",IconUrl);
+		intentService.putExtra("fileName", fileName);
+		startService(intentService);
+		
+		
 	}
 }

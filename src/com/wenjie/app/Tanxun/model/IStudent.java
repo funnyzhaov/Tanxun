@@ -25,5 +25,5 @@ public interface IStudent {
 	 * @param studentId
 	 * @param context 当前Fragment的载体Activity
 	 */
-	void doPersonShow(String studentId,Context context,final IStudentInfoView infoView);
+	void doPersonShow(String studentId,final Context context,final IStudentInfoView infoView);
 }

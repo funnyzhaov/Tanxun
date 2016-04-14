@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobQuery.CachePolicy;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.GetListener;
 
@@ -54,7 +55,11 @@ public class IStudentImpl implements IStudent {
 						//用一个封装的Log打印
 						Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),
 								Toast.LENGTH_SHORT).show();
-						
+						BmobFile fileIcon=stuInfo.getStudentIcon();
+						if(fileIcon!=null){
+							//再进入主页面的同时，开启后台服务下载个人头像
+							logincon.startServiceForupload(fileIcon);
+						}
 						logincon.enterBaseActivity(intent);
 					}else{
 						logincon.onsetProgressBarVin(View.INVISIBLE);
@@ -85,7 +90,7 @@ public class IStudentImpl implements IStudent {
 	}
 	
 	@Override
-	public void doPersonShow(String studentId, Context context,final IStudentInfoView infoView) {
+	public void doPersonShow(String studentId, final Context context,final IStudentInfoView infoView) {
 		//通过学号查找姓名
 		 BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();
 		 query.addWhereEqualTo("studentId", studentId);
@@ -101,12 +106,10 @@ public class IStudentImpl implements IStudent {
 			public void onSuccess(List<StudentInfo> studentlist) {
 				StudentInfo studentInfo=studentlist.get(0);
 				String studentName=studentInfo.getStudentName();
+				String imagePath=context.getApplicationContext().getCacheDir()+"/bmob/"+
+				studentInfo.getStudentIcon().getFilename();
 				infoView.UpdateInfoName(studentName);
-				//获取图片URL
-				
-				//下载图片
-				
-				//？？
+				infoView.updateInfoImage(imagePath);
 			}
 		});
 	}

@@ -13,6 +13,7 @@
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.READ_LOGS"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -29,6 +30,7 @@
         </activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.BaseActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity"></activity>
+        <service android:name="com.wenjie.app.Tanxun.service.UploadIconService"></service>
     </application>
 
 </manifest>
