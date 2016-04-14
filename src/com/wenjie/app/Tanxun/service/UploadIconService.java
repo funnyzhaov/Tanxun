@@ -1,7 +1,5 @@
 package com.wenjie.app.Tanxun.service;
 
-import com.wenjie.app.Tanxun.activity.BaseActivity;
-
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.DownloadFileListener;
 import android.app.IntentService;
@@ -9,8 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-import android.widget.Toast;
-
+/**
+ * 下载头像的服务
+ * @author dell
+ *
+ */
 public class UploadIconService extends IntentService {
 
 	public UploadIconService() {
