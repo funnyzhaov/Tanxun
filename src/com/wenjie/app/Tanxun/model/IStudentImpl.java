@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobQuery.CachePolicy;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.GetListener;
 
@@ -36,6 +37,7 @@ public class IStudentImpl implements IStudent {
 		//从Bmob的数据库中查询 
 		BmobQuery<StudentInfo> bmobQuery = new BmobQuery<StudentInfo>();
 		bmobQuery.addWhereEqualTo("studentId", stuId);
+		bmobQuery.setCachePolicy(CachePolicy.CACHE_ELSE_NETWORK);    // 先从缓存获取数据，如果没有，再从网络获取。
 		bmobQuery.findObjects(context, new FindListener<StudentInfo>() {
 			
 			@Override
