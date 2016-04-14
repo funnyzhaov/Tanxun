@@ -13,5 +13,9 @@ public interface IModifyInfoView {
 	 * @param stuinfo
 	 */
 	void setTextInfo(StudentInfo stuinfo);
-
+	/**
+	 * 获取当前学生的ObjectId
+	 * @param stuinfo
+	 */
+	void getStudentObjectId(StudentInfo stuinfo);
 }

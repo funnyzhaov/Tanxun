@@ -100,6 +100,11 @@ public class IStudentImpl implements IStudent {
 				StudentInfo studentInfo=studentlist.get(0);
 				String studentName=studentInfo.getStudentName();
 				infoView.UpdateInfoName(studentName);
+				//»ñÈ¡Í¼Æ¬URL
+				
+				//ÏÂÔØÍ¼Æ¬
+				
+				//£¿£¿
 			}
 		});
 	}

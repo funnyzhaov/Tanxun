@@ -24,7 +24,7 @@ public class IPersonImpl implements IPerson {
 			@Override
 			public void onSuccess(List<StudentInfo> arg0) {
 				imofidyView.setTextInfo(arg0.get(0));
-				
+				imofidyView.getStudentObjectId(arg0.get(0));
 			}
 			@Override
 			public void onError(int arg0, String arg1) {

@@ -24,6 +24,7 @@
              android:gravity="center"
              />
           <TextView 
+            android:id="@+id/ok_upload"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="完成"
@@ -36,21 +37,22 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/border"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <ImageView
             android:id="@+id/person_image"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:gravity="center"
+            android:layout_gravity="center"
             android:src="@drawable/head" />
 
         <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/bianji_text"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="编辑"
             android:textSize="20dp"
