@@ -100,6 +100,39 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		stuMajorText.setText(stuinfo.getMajor());
 		
 	}
+	@Override
+	public void updateImage(String imagePath) {
+		if(personImage.getDrawable().getCurrent().getConstantState()
+				.equals(getResources().getDrawable(R.drawable.head).getConstantState())){
+
+			if(imagePath!=null){
+				Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
+				//得到图片原始的高宽
+				int rawHeight = rawBitmap.getHeight();
+				int rawWidth = rawBitmap.getWidth();
+				// 设定图片新的高宽
+				int newHeight = 80;
+				int newWidth = 80;
+				// 计算缩放因子
+				float heightScale = ((float) newHeight) / rawHeight;
+				float widthScale = ((float) newWidth) / rawWidth;
+				// 新建立矩阵
+				Matrix matrix = new Matrix();
+				matrix.postScale(heightScale, widthScale);
+				// 压缩后图片的宽和高以及kB大小均会变化
+				Bitmap newBitmap = Bitmap.createBitmap(rawBitmap, 0, 0, rawWidth,
+						rawHeight, matrix, true);
+				//回收大图的对象
+				if(!rawBitmap.isRecycled())
+				{
+					rawBitmap.recycle();
+				}     
+				personImage.setImageBitmap(newBitmap);
+			}else{
+				Toast.makeText(ModifyInfoActivity.this, "failed to get image", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
 	 @Override
 	    protected void onActivityResult(int requestCode,int resultCode,Intent data){
 	    	switch (requestCode) {
@@ -232,5 +265,6 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		public void getStudentObjectId(StudentInfo stuinfo) {
 			personObjectId=stuinfo.getObjectId();
 		}
+		
 	
 }

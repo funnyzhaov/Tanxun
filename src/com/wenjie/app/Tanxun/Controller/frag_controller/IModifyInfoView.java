@@ -18,4 +18,8 @@ public interface IModifyInfoView {
 	 * @param stuinfo
 	 */
 	void getStudentObjectId(StudentInfo stuinfo);
+	/**
+	 * ¸üÐÂÍ·Ïñ
+	 */
+	void updateImage(String imagePath);
 }

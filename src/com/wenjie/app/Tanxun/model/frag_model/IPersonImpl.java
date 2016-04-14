@@ -9,11 +9,14 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobQuery.CachePolicy;
 import cn.bmob.v3.listener.FindListener;
 
+import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
 import com.wenjie.app.Tanxun.Controller.frag_controller.IModifyInfoView;
+import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 
 public class IPersonImpl implements IPerson {
-	public StudentInfo stuInfo=new StudentInfo();
+	IStudentInfoView perFrag=new PersonFragment();
+	
 	@Override
 	public void getStudentInfo(final String studentName,final Context context,final IModifyInfoView imofidyView) {
 		
@@ -26,6 +29,9 @@ public class IPersonImpl implements IPerson {
 			@Override
 			public void onSuccess(List<StudentInfo> arg0) {
 				imofidyView.setTextInfo(arg0.get(0));
+				String imagePath=context.getApplicationContext().getCacheDir()+"/bmob/"+
+						arg0.get(0).getStudentIcon().getFilename();
+				imofidyView.updateImage(imagePath);
 				imofidyView.getStudentObjectId(arg0.get(0));
 			}
 			@Override

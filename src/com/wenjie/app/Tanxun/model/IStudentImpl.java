@@ -56,6 +56,7 @@ public class IStudentImpl implements IStudent {
 						Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),
 								Toast.LENGTH_SHORT).show();
 						BmobFile fileIcon=stuInfo.getStudentIcon();
+						
 						if(fileIcon!=null){
 							//再进入主页面的同时，开启后台服务下载个人头像
 							logincon.startServiceForupload(fileIcon);
