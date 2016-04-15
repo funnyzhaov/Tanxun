@@ -14,6 +14,7 @@ import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 import com.wenjie.app.Tanxun.model.frag_model.IPerson;
 import com.wenjie.app.Tanxun.model.frag_model.IPersonImpl;
+import com.wenjie.app.Tanxun.util.RoundImage;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -127,7 +128,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 				{
 					rawBitmap.recycle();
 				}     
-				personImage.setImageBitmap(newBitmap);
+				personImage.setImageBitmap(RoundImage.roundImage(newBitmap));
 			}else{
 				Toast.makeText(ModifyInfoActivity.this, "failed to get image", Toast.LENGTH_SHORT).show();
 			}
@@ -216,7 +217,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	    		{
 	    			rawBitmap.recycle();
 	    		}     
-	    		personImage.setImageBitmap(newBitmap);
+	    		personImage.setImageBitmap(RoundImage.roundImage(newBitmap));
 	    		Log.d("Show", imagePath);
 	    		picPath=imagePath;
 	    	}else{

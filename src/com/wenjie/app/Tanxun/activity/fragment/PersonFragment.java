@@ -6,6 +6,8 @@ import com.wenjie.app.Tanxun.activity.LoginActivity;
 import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity;
 import com.wenjie.app.Tanxun.model.IStudent;
 import com.wenjie.app.Tanxun.model.IStudentImpl;
+import com.wenjie.app.Tanxun.util.RoundImage;
+
 import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.content.Intent;
@@ -106,8 +108,8 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 				int rawHeight = rawBitmap.getHeight();
 				int rawWidth = rawBitmap.getWidth();
 				// 设定图片新的高宽
-				int newHeight = 80;
-				int newWidth = 80;
+				int newHeight = 90;
+				int newWidth = 90;
 				// 计算缩放因子
 				float heightScale = ((float) newHeight) / rawHeight;
 				float widthScale = ((float) newWidth) / rawWidth;
@@ -122,7 +124,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 				{
 					rawBitmap.recycle();
 				}     
-				imageHead.setImageBitmap(newBitmap);
+				imageHead.setImageBitmap(RoundImage.roundImage(newBitmap));
 			}else{
 				Toast.makeText(InBaseActivity, "failed to get image", Toast.LENGTH_SHORT).show();
 			}
