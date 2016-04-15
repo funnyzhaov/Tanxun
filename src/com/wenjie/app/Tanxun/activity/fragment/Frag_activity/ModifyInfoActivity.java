@@ -76,7 +76,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 				ModifyInfoActivity.this,this);
 		//编辑文本注册点击事件
 		modifyText.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent=new Intent("android.intent.action.GET_CONTENT");//构建意图
@@ -85,13 +85,13 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 			}
 		});
 		uploadText.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				doUploadImage();
 			}
 		});
-		
+
 	}
 	@Override
 	public void setTextInfo(StudentInfo stuinfo) {
@@ -99,7 +99,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		stuSexText.setText(stuinfo.getStudentSex());
 		stuLevelText.setText(stuinfo.getStudentLevel());
 		stuMajorText.setText(stuinfo.getMajor());
-		
+
 	}
 	@Override
 	public void updateImage(String imagePath) {
@@ -134,138 +134,138 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 			}
 		}
 	}
-	 @Override
-	    protected void onActivityResult(int requestCode,int resultCode,Intent data){
-	    	switch (requestCode) {
-			case CHOOSE_PHOTO:
-				if(resultCode==RESULT_OK){
-					if(Build.VERSION.SDK_INT>=19){
-						//4.4及以上系统使用这个方法处理图片
-						handleImageOnKitKat(data);
-					}else{
-						//4.4以下
-						handleImageBeforeKitKat(data);
-					}
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		switch (requestCode) {
+		case CHOOSE_PHOTO:
+			if(resultCode==RESULT_OK){
+				if(Build.VERSION.SDK_INT>=19){
+					//4.4及以上系统使用这个方法处理图片
+					handleImageOnKitKat(data);
+				}else{
+					//4.4以下
+					handleImageBeforeKitKat(data);
 				}
-				break;
-			default:
-				break;
 			}
-	    }
-	 @TargetApi(19)
-	    private void handleImageOnKitKat(Intent data){
-	    	String imagePath=null;
-	    	Uri uri=data.getData();
-	    	if(DocumentsContract.isDocumentUri(this, uri)){
-	    		//如果是document类型的Uri,则通过document id处理
-	    		String docId=DocumentsContract.getDocumentId(uri);
-	    		if("com.android.providers.media.documents".equals(uri.getAuthority())){
-	    			//解析出数字格式的id
-	    			String id=docId.split(":")[1];
-	    			String selection=MediaStore.Images.Media._ID+"="+id;
-	    			imagePath=getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
-	    		}else if("com.android.providers.downloads.documents".equals(uri.getAuthority())){
-	    			Uri contentUri=ContentUris.withAppendedId(
-	    					Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
-	    			imagePath=getImagePath(contentUri, null);
-	    		}else if("content".equalsIgnoreCase(uri.getScheme())){
-	    			//如果不是document类型的Uri,则使用普通方式处理
-	    			imagePath=getImagePath(uri, null);
-	    		}
-	    		
-	    	}
-	    }
-	    private String getImagePath(Uri uri,String selection){
-			String path=null;
-			//通过Uri和Selection来获取真实的图片路径
-			Cursor cursor=getContentResolver().query(uri, null, selection, null, null);
-			if(cursor!=null){
-				if(cursor.moveToFirst()){
-					path=cursor.getString(cursor.getColumnIndex(Media.DATA));
-				}
-				cursor.close();
-			}
-	    	return path;
-	    	
-	    	
-	    }
-	    private void handleImageBeforeKitKat(Intent data){
-	    	Uri uri=data.getData();
-	    	String imagePath=getImagePath(uri, null);
-	    	displayImage(imagePath);
-	    }
-	    private void displayImage(String imagePath){
-	    	if(imagePath!=null){
-	    		Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
-	    		//得到图片原始的高宽
-	    		int rawHeight = rawBitmap.getHeight();
-	    		int rawWidth = rawBitmap.getWidth();
-	    		// 设定图片新的高宽
-	    		int newHeight = 90;
-	    		int newWidth = 90;
-	    		// 计算缩放因子
-	    		float heightScale = ((float) newHeight) / rawHeight;
-	    		float widthScale = ((float) newWidth) / rawWidth;
-	    		// 新建立矩阵
-	    		Matrix matrix = new Matrix();
-	    		matrix.postScale(heightScale, widthScale);
-	    		// 压缩后图片的宽和高以及kB大小均会变化
-	    		Bitmap newBitmap = Bitmap.createBitmap(rawBitmap, 0, 0, rawWidth,
-	    				rawHeight, matrix, true);
-	    		//回收大图的对象
-	    		if(!rawBitmap.isRecycled())
-	    		{
-	    			rawBitmap.recycle();
-	    		}     
-	    		personImage.setImageBitmap(RoundImage.roundImage(newBitmap));
-	    		Log.d("Show", imagePath);
-	    		picPath=imagePath;
-	    	}else{
-	    		Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
-	    	}
-	    }
-	    /**
-	     * 上传个人头像至服务器并保存到StudentInfo表中
-	     */
-	    public void doUploadImage(){
-	    	final BmobFile bmobFile = new BmobFile(new File(picPath));
-	    	bmobFile.uploadblock(ModifyInfoActivity.this, new UploadFileListener() {
-	    		@Override
-	    		public void onSuccess() {
-	    			StudentInfo stu=new StudentInfo();
-	    			stu.setStudentIcon(bmobFile);
-	    			stu.update(ModifyInfoActivity.this, personObjectId, new UpdateListener() {
-
-	    				@Override
-	    				public void onSuccess() {
-	    					Toast.makeText(ModifyInfoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
-	    					Intent intent=new Intent(ModifyInfoActivity.this,BaseActivity.class);
-	    					startActivity(intent);
-	    					finish();
-	    				}
-
-	    				@Override
-	    				public void onFailure(int arg0, String arg1) {
-	    					Toast.makeText(ModifyInfoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
-	    				}
-	    			});
-	    		}
-	    		@Override
-	    		public void onProgress(Integer value) {
-	    			// 返回的上传进度（百分比）
-	    		}
-
-	    		@Override
-	    		public void onFailure(int code, String msg) {
-	    			Log.d("Show","不能上传中文命名的图片哦！");
-	    		}
-	    	});
-	     }
-	    
-		@Override
-		public void getStudentObjectId(StudentInfo stuinfo) {
-			personObjectId=stuinfo.getObjectId();
+			break;
+		default:
+			break;
 		}
-		
-	
+	}
+	@TargetApi(19)
+	private void handleImageOnKitKat(Intent data){
+		String imagePath=null;
+		Uri uri=data.getData();
+		if(DocumentsContract.isDocumentUri(this, uri)){
+			//如果是document类型的Uri,则通过document id处理
+			String docId=DocumentsContract.getDocumentId(uri);
+			if("com.android.providers.media.documents".equals(uri.getAuthority())){
+				//解析出数字格式的id
+				String id=docId.split(":")[1];
+				String selection=MediaStore.Images.Media._ID+"="+id;
+				imagePath=getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
+			}else if("com.android.providers.downloads.documents".equals(uri.getAuthority())){
+				Uri contentUri=ContentUris.withAppendedId(
+						Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
+				imagePath=getImagePath(contentUri, null);
+			}else if("content".equalsIgnoreCase(uri.getScheme())){
+				//如果不是document类型的Uri,则使用普通方式处理
+				imagePath=getImagePath(uri, null);
+			}
+
+		}
+	}
+	private String getImagePath(Uri uri,String selection){
+		String path=null;
+		//通过Uri和Selection来获取真实的图片路径
+		Cursor cursor=getContentResolver().query(uri, null, selection, null, null);
+		if(cursor!=null){
+			if(cursor.moveToFirst()){
+				path=cursor.getString(cursor.getColumnIndex(Media.DATA));
+			}
+			cursor.close();
+		}
+		return path;
+
+
+	}
+	private void handleImageBeforeKitKat(Intent data){
+		Uri uri=data.getData();
+		String imagePath=getImagePath(uri, null);
+		displayImage(imagePath);
+	}
+	private void displayImage(String imagePath){
+		if(imagePath!=null){
+			Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
+			//得到图片原始的高宽
+			int rawHeight = rawBitmap.getHeight();
+			int rawWidth = rawBitmap.getWidth();
+			// 设定图片新的高宽
+			int newHeight = 90;
+			int newWidth = 90;
+			// 计算缩放因子
+			float heightScale = ((float) newHeight) / rawHeight;
+			float widthScale = ((float) newWidth) / rawWidth;
+			// 新建立矩阵
+			Matrix matrix = new Matrix();
+			matrix.postScale(heightScale, widthScale);
+			// 压缩后图片的宽和高以及kB大小均会变化
+			Bitmap newBitmap = Bitmap.createBitmap(rawBitmap, 0, 0, rawWidth,
+					rawHeight, matrix, true);
+			//回收大图的对象
+			if(!rawBitmap.isRecycled())
+			{
+				rawBitmap.recycle();
+			}     
+			personImage.setImageBitmap(RoundImage.roundImage(newBitmap));
+			Log.d("Show", imagePath);
+			picPath=imagePath;
+		}else{
+			Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
+		}
+	}
+	/**
+	 * 上传个人头像至服务器并保存到StudentInfo表中
+	 */
+	public void doUploadImage(){
+		final BmobFile bmobFile = new BmobFile(new File(picPath));
+		bmobFile.uploadblock(ModifyInfoActivity.this, new UploadFileListener() {
+			@Override
+			public void onSuccess() {
+				StudentInfo stu=new StudentInfo();
+				stu.setStudentIcon(bmobFile);
+				stu.update(ModifyInfoActivity.this, personObjectId, new UpdateListener() {
+
+					@Override
+					public void onSuccess() {
+						Toast.makeText(ModifyInfoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+						Intent intent=new Intent(ModifyInfoActivity.this,BaseActivity.class);
+						startActivity(intent);
+						finish();
+					}
+
+					@Override
+					public void onFailure(int arg0, String arg1) {
+						Toast.makeText(ModifyInfoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+					}
+				});
+			}
+			@Override
+			public void onProgress(Integer value) {
+				// 返回的上传进度（百分比）
+			}
+
+			@Override
+			public void onFailure(int code, String msg) {
+				Log.d("Show","不能上传中文命名的图片哦！");
+			}
+		});
+	}
+
+	@Override
+	public void getStudentObjectId(StudentInfo stuinfo) {
+		personObjectId=stuinfo.getObjectId();
+	}
+
+
 }

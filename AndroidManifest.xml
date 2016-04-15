@@ -3,13 +3,16 @@
     package="com.wenjie.app.Tanxun"
     android:versionCode="1"
     android:versionName="1.0" >
-
+	  <!-- 最小兼容版本  ,目标版本-->
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="17" />
+    <!-- 网络权限 -->
 	<uses-permission android:name="android.permission.INTERNET"/>
+	<!-- WIFI权限-->
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<!-- 允许读取SD卡权限 -->
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.READ_LOGS"/>

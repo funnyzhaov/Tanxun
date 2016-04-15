@@ -97,7 +97,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	}
 	@Override
 	public void updateInfoImage(String imagePath) {
-		
+
 		if(imageHead.getDrawable().getCurrent().getConstantState()
 				.equals(getResources().getDrawable(R.drawable.head).getConstantState()))
 		{

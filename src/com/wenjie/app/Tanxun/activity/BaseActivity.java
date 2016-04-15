@@ -31,7 +31,7 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 	private ImageButton mImgHome;
 	private ImageButton mImgSearch;
 	private ImageButton mImgPerson;
-	
+
 	private Fragment mTab01;//主页
 	private Fragment mTab02;//发现
 	private Fragment mTab03;//个人
@@ -64,7 +64,7 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 		mTabSearch.setOnClickListener(this);
 		mTabPerson.setOnClickListener(this);
 	}
-	
+
 	private void setSelect(int i)
 	{
 		FragmentManager fm = getSupportFragmentManager();
@@ -93,7 +93,7 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 			} else
 			{
 				transaction.show(mTab02);
-				
+
 			}
 			mImgSearch.setImageResource(R.drawable.serach_pressed);
 			break;
@@ -158,20 +158,20 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 			break;
 		}
 	}
-			
-	
+
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-	    if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){   
-	        if((System.currentTimeMillis()-exitTime) > 2000){  
-	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
-	            exitTime = System.currentTimeMillis();   
-	        } else {
-	            finish();
-	            System.exit(0);
-	        }
-	        return true;   
-	    }
-	    return super.onKeyDown(keyCode, event);
+		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){   
+			if((System.currentTimeMillis()-exitTime) > 2000){  
+				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+				exitTime = System.currentTimeMillis();   
+			} else {
+				finish();
+				System.exit(0);
+			}
+			return true;   
+		}
+		return super.onKeyDown(keyCode, event);
 	}  
 }

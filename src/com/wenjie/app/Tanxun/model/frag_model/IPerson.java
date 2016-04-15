@@ -11,9 +11,12 @@ import com.wenjie.app.Tanxun.model.StudentInfo;
  *
  */
 public interface IPerson {
+	
 	/**
 	 * 获取当前学生信息对象
-	 * @return
+	 * @param studentName    学生姓名
+	 * @param context
+	 * @param imofidyView    修改个人资料Controller实例
 	 */
 	void getStudentInfo(final String studentName,final Context context,final IModifyInfoView imofidyView);
 }

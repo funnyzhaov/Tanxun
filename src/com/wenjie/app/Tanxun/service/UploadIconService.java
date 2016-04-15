@@ -16,9 +16,9 @@ public class UploadIconService extends IntentService {
 
 	public UploadIconService() {
 		super("uploadIconService");
-		
+
 	}
-	
+
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		String IconUrl=intent.getStringExtra("IconUrl");

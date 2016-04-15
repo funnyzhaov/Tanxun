@@ -20,6 +20,7 @@ public interface IModifyInfoView {
 	void getStudentObjectId(StudentInfo stuinfo);
 	/**
 	 * ¸üÐÂÍ·Ïñ
+	 * @param imagePath   Í¼Æ¬path
 	 */
 	void updateImage(String imagePath);
 }

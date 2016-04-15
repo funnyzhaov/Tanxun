@@ -33,29 +33,29 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 	private ProgressBar progressLogin;//圆形进度条
 	private final String AppId="dbfed305dbefc572cc9f0805b25c9d14";//Bmob应用ID
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_login);
-        initView();
-    }
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_login);
+		initView();
+	}
 	public void initView(){
 		//初始化Bmob SDK
-        Bmob.initialize(this,AppId);
-        //初始化控件
-        loginButton=(Button)findViewById(R.id.loginButton);
-        idText=(EditText)findViewById(R.id.idText);
-        passwdText=(EditText)findViewById(R.id.passwdText);
-        jumpText=(TextView)findViewById(R.id.jumpText);
-        progressLogin=(ProgressBar)findViewById(R.id.progresslogin);
-        
-        //初始设置进度条不可见
-        onsetProgressBarVin(View.INVISIBLE);
-        loginButton.setOnClickListener(this);
-        jumpText.setOnClickListener(this);
-        Istudent=new IStudentImpl();
+		Bmob.initialize(this,AppId);
+		//初始化控件
+		loginButton=(Button)findViewById(R.id.loginButton);
+		idText=(EditText)findViewById(R.id.idText);
+		passwdText=(EditText)findViewById(R.id.passwdText);
+		jumpText=(TextView)findViewById(R.id.jumpText);
+		progressLogin=(ProgressBar)findViewById(R.id.progresslogin);
+
+		//初始设置进度条不可见
+		onsetProgressBarVin(View.INVISIBLE);
+		loginButton.setOnClickListener(this);
+		jumpText.setOnClickListener(this);
+		Istudent=new IStudentImpl();
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		Intent intent=new Intent(this, BaseActivity.class);
@@ -80,7 +80,7 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 		startActivity(intent);
 		finish();
 	}
-	
+
 	@Override
 	public void startServiceForupload(BmobFile fileIcon) {
 		Intent intentService=new Intent(this,UploadIconService.class);
@@ -89,7 +89,7 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 		intentService.putExtra("IconUrl",IconUrl);
 		intentService.putExtra("fileName", fileName);
 		startService(intentService);
-		
-		
+
+
 	}
 }

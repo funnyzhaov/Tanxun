@@ -1,6 +1,6 @@
 package com.wenjie.app.Tanxun.Controller;
 /**
- * 学生个人信息页面UI规范
+ * 学生个人信息页面接口
  * @author dell
  *
  */

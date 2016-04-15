@@ -3,7 +3,7 @@ package com.wenjie.app.Tanxun.model;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 /**
- * 学生信息实体类
+ *  学生信息模型
  * @author dell
  *
  */
