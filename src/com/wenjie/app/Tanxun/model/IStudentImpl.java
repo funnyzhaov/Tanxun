@@ -8,8 +8,10 @@ import com.wenjie.app.Tanxun.activity.BaseActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
@@ -24,7 +26,7 @@ import cn.bmob.v3.listener.GetListener;
  *
  */
 public class IStudentImpl implements IStudent {
-
+	private String picPath;
 	StudentInfo stuInfo;                   //学生实例
 	private Handler handler;	
 
@@ -48,6 +50,7 @@ public class IStudentImpl implements IStudent {
 					if(stuId.equals(stuInfo.getStudentId())&& 
 							stuPawd.equals(stuInfo.getStudentPasswd())){
 						logincon.onsetProgressBarVin(View.INVISIBLE);
+						
 						intent.putExtra("studentId", stuId);				//将学号信息放入intent
 						Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),//用一个封装的Log打印
 								Toast.LENGTH_SHORT).show();
@@ -106,6 +109,31 @@ public class IStudentImpl implements IStudent {
 				infoView.updateInfoImage(imagePath);
 			}
 		});
+	}
+
+	@Override
+	public void queryImageById(String studentId,final Context context,final int i) {
+		BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();			//通过学号查找姓名
+		query.addWhereEqualTo("studentId", studentId);
+		query.setLimit(5);
+		
+		query.findObjects(context, new FindListener<StudentInfo>() {
+
+			@Override
+			public void onError(int arg0, String arg1) {
+			}
+
+			@Override
+			public void onSuccess(List<StudentInfo> studentlist) {
+				//使用SharedPreferences存储图片路径
+				SharedPreferences.Editor editor=context.getSharedPreferences("imagedata"+i, 0).edit();
+				editor.putString("HeadpicPath", studentlist.get(0).getStudentIcon().getFileUrl(context));
+				Log.d("BaseActivity",studentlist.get(0).getStudentIcon().getFileUrl(context));
+				editor.commit();
+			}
+		});
+		
+		
 	}
 
 }
