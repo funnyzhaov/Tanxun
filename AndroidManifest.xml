@@ -33,6 +33,7 @@
         </activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.BaseActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity"></activity>
+        <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.QuestionDetailsActivity"></activity>
         <service android:name="com.wenjie.app.Tanxun.service.UploadIconService"></service>
     </application>
 
