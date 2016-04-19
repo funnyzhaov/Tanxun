@@ -40,9 +40,10 @@ public class NetWorkImgeUtil {
 	        ImageRequest request = new ImageRequest(url, new Listener<Bitmap>() {
 	            @Override
 	            public void onResponse(Bitmap bitmap) {
-	                img.setImageBitmap(bitmap);
+	            	Bitmap newbitmap=CompressImage.compressImage(bitmap);
+	                img.setImageBitmap(RoundImage.roundImage(newbitmap));
 	            }
-	        }, 0, 0, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+	        }, 0, 0,ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565, new Response.ErrorListener() {
 	           
 
 				@Override

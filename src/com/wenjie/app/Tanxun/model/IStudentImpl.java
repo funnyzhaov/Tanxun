@@ -84,7 +84,7 @@ public class IStudentImpl implements IStudent {
 			public void run() {
 				doLogin(stuId, stuPawd, context,logincon);
 			}
-		},3000);		
+		},1000);		
 	}
 
 	@Override
@@ -111,29 +111,5 @@ public class IStudentImpl implements IStudent {
 		});
 	}
 
-	@Override
-	public void queryImageById(String studentId,final Context context,final int i) {
-		BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();			//通过学号查找姓名
-		query.addWhereEqualTo("studentId", studentId);
-		query.setLimit(5);
-		
-		query.findObjects(context, new FindListener<StudentInfo>() {
-
-			@Override
-			public void onError(int arg0, String arg1) {
-			}
-
-			@Override
-			public void onSuccess(List<StudentInfo> studentlist) {
-				//使用SharedPreferences存储图片路径
-				SharedPreferences.Editor editor=context.getSharedPreferences("imagedata"+i, 0).edit();
-				editor.putString("HeadpicPath", studentlist.get(0).getStudentIcon().getFileUrl(context));
-				Log.d("BaseActivity",studentlist.get(0).getStudentIcon().getFileUrl(context));
-				editor.commit();
-			}
-		});
-		
-		
-	}
 
 }

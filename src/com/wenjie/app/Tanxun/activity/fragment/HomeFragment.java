@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.FindListener;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -11,11 +12,13 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.model.Question;
+import com.wenjie.app.Tanxun.model.StudentInfo;
 import com.wenjie.app.Tanxun.model.adapter.QuestionAdapter;
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +35,14 @@ public class HomeFragment extends Fragment {
 	static List<Question> listdata=new ArrayList<Question>(); //数据集合
 	BmobQuery<Question> query;
 	PullToRefreshListView Pulllistview;    
-	ListView mMsgListView;        
+	ListView mMsgListView;   
 	private int limit = 7;		// 每页的数据是7条
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
 		homeview=inflater.inflate(R.layout.home, container, false);
+		
 		initListView();
 		queryData(0);
 		return homeview;
@@ -47,6 +51,7 @@ public class HomeFragment extends Fragment {
 	public static List<Question> getListData(){
 		return listdata;
 	}
+	
 	/**
 	 * 初始化视图
 	 */
@@ -78,7 +83,7 @@ public class HomeFragment extends Fragment {
 	 * @param page 页码
 	 */
 	private void queryData(int page) {
-		BmobQuery<Question> query = new BmobQuery<Question>();
+		 BmobQuery<Question> query = new BmobQuery<Question>();
 		// 按时间降序查询
 		query.order("-createdAt");
 		query.setSkip(0);
@@ -92,6 +97,7 @@ public class HomeFragment extends Fragment {
 					listdata.clear();
 					// 将本次查询的数据添加到bankCards中
 					for (Question td : list) {
+						
 						listdata.add(td);
 					}
 					// 这里在每次加载完数据后，将当前页码+1，这样在上拉刷新的onPullUpToRefresh方法中就不需要操作curPage了
@@ -107,6 +113,7 @@ public class HomeFragment extends Fragment {
 				}
 		});
 	}
-
+	
+	
 	
 }

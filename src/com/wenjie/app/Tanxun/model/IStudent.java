@@ -35,9 +35,4 @@ public interface IStudent {
 	 * @param context  当前Fragment的载体Activity
 	 */
 	void doPersonShow(String studentId,final Context context,final IStudentInfoView infoView);
-	/**
-	 * 通过学号查询头像pic
-	 * @param studentId
-	 */
-	void queryImageById(String studentId,final Context context,final int i);
 }

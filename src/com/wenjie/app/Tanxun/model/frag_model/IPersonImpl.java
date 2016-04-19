@@ -36,7 +36,7 @@ public class IPersonImpl implements IPerson {
 			}
 			@Override
 			public void onError(int arg0, String arg1) {
-				Toast.makeText(context, "加载失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "数据已存在于缓存", Toast.LENGTH_SHORT).show();
 			}
 		});
 		
