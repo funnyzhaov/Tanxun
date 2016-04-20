@@ -11,17 +11,21 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.QuestionDetailsActivity;
 import com.wenjie.app.Tanxun.model.Question;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 import com.wenjie.app.Tanxun.model.adapter.QuestionAdapter;
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 /**
  * Home主页
@@ -58,6 +62,20 @@ public class HomeFragment extends Fragment {
 	private void initListView(){
 		InBaseActivity=getActivity();
 		Pulllistview=(PullToRefreshListView)homeview.findViewById(R.id.list_question);
+		//设置子项单击事件
+		Pulllistview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Question nowQuestion=listdata.get(position-1);
+				Intent intent=new Intent(InBaseActivity,QuestionDetailsActivity.class);
+				//装入问题Id的值
+				int Id=(Integer) nowQuestion.getQuestionId();
+				intent.putExtra("questionId", Id);
+				startActivity(intent);
+			}
+		});
 		//设置监听事件
 		Pulllistview.setOnRefreshListener(new OnRefreshListener2<ListView>() {
 			@Override
