@@ -44,7 +44,7 @@ public class QuestionDetailsActivity extends Activity {
 	 */
 	private void initQuestionData() {
 		int id=getIntent().getIntExtra("questionId",0);
-		Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
 	}
 	
 }

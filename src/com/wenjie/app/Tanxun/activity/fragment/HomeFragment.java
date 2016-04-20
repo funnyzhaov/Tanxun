@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
 				Question nowQuestion=listdata.get(position-1);
 				Intent intent=new Intent(InBaseActivity,QuestionDetailsActivity.class);
 				//装入问题Id的值
-				int Id=(Integer) nowQuestion.getQuestionId();
+				int Id= nowQuestion.getQuestionId();
 				intent.putExtra("questionId", Id);
 				startActivity(intent);
 			}

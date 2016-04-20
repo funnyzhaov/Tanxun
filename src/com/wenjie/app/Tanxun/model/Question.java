@@ -9,11 +9,11 @@ import cn.bmob.v3.datatype.BmobFile;
  */
 public class Question extends BmobObject {
 	private String studentId; //学生ID
-	private Number questionId;//问题ID
-	public Number getQuestionId() {
+	private Integer questionId;//问题ID
+	public Integer getQuestionId() {
 		return questionId;
 	}
-	public void setQuestionId(Number questionId) {
+	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
 	private String questionTitle; //问题标题
