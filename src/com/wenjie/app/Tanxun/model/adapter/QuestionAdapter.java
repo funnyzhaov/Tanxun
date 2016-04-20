@@ -41,6 +41,7 @@ public class QuestionAdapter extends ArrayAdapter<Question>  {
            view=convertView;
            viewHodler=(ViewHodler)view.getTag();
        }
+       
        Question question=(Question)getItem(position);
        viewHodler.quesTitle.setText(question.getQuestionTitle());
        viewHodler.quesCont.setText(question.getQuestionContent());

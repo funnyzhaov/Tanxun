@@ -58,6 +58,10 @@ public class IStudentImpl implements IStudent {
 						if(fileIcon!=null){
 							logincon.startServiceForupload(fileIcon);	   //再进入主页面的同时，开启后台服务下载个人头像
 						}
+						//将个人学号信息放在SharedPreferences中
+						SharedPreferences.Editor editor=context.getSharedPreferences("nowstudentdata", 0).edit();
+						editor.putString("stuid", stuId);
+						editor.commit();
 						logincon.enterBaseActivity(intent);
 					}else{
 						logincon.onsetProgressBarVin(View.INVISIBLE);
