@@ -1,6 +1,13 @@
 package com.wenjie.app.Tanxun.activity.fragment.Frag_activity;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.model.Question;
+import com.wenjie.app.Tanxun.util.NetWorkImgeUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -43,8 +50,30 @@ public class QuestionDetailsActivity extends Activity {
 	 * 初始化问题数据
 	 */
 	private void initQuestionData() {
+		//获取intent传入的qeustionId值
 		int id=getIntent().getIntExtra("questionId",0);
-		Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+		//查找相应问题的数据
+		BmobQuery<Question> query=new BmobQuery<Question>();
+		query.addWhereEqualTo("questionId", id);
+		query.findObjects(this, new FindListener<Question>() {
+			
+			@Override
+			public void onSuccess(List<Question> arg0) {
+				Question nowqu=arg0.get(0);
+				deQuestionTitle.setText(nowqu.getQuestionTitle());
+				deQuestionContent.setText(nowqu.getQuestionContent());
+				deQuestionTime.setText(nowqu.getCreatedAt());
+				//获取图片URL
+				String path=nowqu.getStudentIcon().getFileUrl(QuestionDetailsActivity.this);
+				//显示图片
+				NetWorkImgeUtil.getInstance(QuestionDetailsActivity.this).imageRequest(path, deQuestionIcon);
+			}
+			
+			@Override
+			public void onError(int arg0, String arg1) {
+				
+			}
+		});
 	}
 	
 }

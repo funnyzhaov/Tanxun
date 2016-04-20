@@ -12,14 +12,14 @@ public class Comments extends BmobObject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Number questionId;//问题Id
+	private Integer questionId;//问题Id
 	private String commentContent;//评论内容
 	private String commentUserName;//评论人姓名
 	private String commentUserIconPath;//评论人头像URL
-	public Number getQuestionId() {
+	public Integer getQuestionId() {
 		return questionId;
 	}
-	public void setQuestionId(Number questionId) {
+	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
 	public String getCommentContent() {
