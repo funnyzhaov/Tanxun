@@ -53,6 +53,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	private TextView uploadText;//完成文本
 	private String picPath;//图片路径
 	private String personObjectId;//当前学生的ObjectId
+	private String nowpicPath;//当前图片路径
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,10 +89,23 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 
 			@Override
 			public void onClick(View v) {
-				doUploadImage();
+				if(isChoose()){
+					doUploadImage();
+				}else{
+					Toast.makeText(ModifyInfoActivity.this, "不想上传新头像，那就返回吧", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
+	}
+	//如果此头像和加载到APP中的头像一致，不上传
+	public boolean isChoose(){
+		if(picPath.equals(nowpicPath)){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 	@Override
 	public void setTextInfo(StudentInfo stuinfo) {
@@ -99,7 +113,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		stuSexText.setText(stuinfo.getStudentSex());
 		stuLevelText.setText(stuinfo.getStudentLevel());
 		stuMajorText.setText(stuinfo.getMajor());
-
+		nowpicPath=getApplicationContext().getCacheDir()+"/bmob/"+stuinfo.getStudentIcon().getFilename();
 	}
 	@Override
 	public void updateImage(String imagePath) {
