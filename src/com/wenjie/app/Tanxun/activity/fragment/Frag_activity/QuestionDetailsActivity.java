@@ -125,18 +125,18 @@ public class QuestionDetailsActivity extends Activity {
 			// 按时间降序查询
 			query.order("-createdAt");
 			query.setSkip(0);
+			
+			query.addWhereEqualTo("questionId", queid);
 			// 查找数据
 			query.findObjects(this, new FindListener<Comments>() {
 				@Override
 				public void onSuccess(List<Comments> list) {
 					if(list.size()>0){
 						listdata.clear();
-						// 将本次查询的数据添加到bankCards中
 						for (Comments td : list) {
 							
 							listdata.add(td);
 						}
-						// 这里在每次加载完数据后，将当前页码+1，这样在上拉刷新的onPullUpToRefresh方法中就不需要操作curPage了
 						adapter.notifyDataSetChanged();
 					}
 					
@@ -144,7 +144,7 @@ public class QuestionDetailsActivity extends Activity {
 				}
 					@Override
 					public void onError(int arg0, String arg1) {
-						adapter.notifyDataSetChanged();
+						//adapter.notifyDataSetChanged();
 					}
 			});
 	}
@@ -200,8 +200,14 @@ public class QuestionDetailsActivity extends Activity {
 				
 			}
 		});
-		
-	
 	}
+
+
+
+	@Override
+	public void onBackPressed() {
+		finish();
+	}
+	
 	
 }

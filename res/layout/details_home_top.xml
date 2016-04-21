@@ -7,7 +7,7 @@
     
     >
     <ImageButton 
-        android:id="@+id/imgbt_sousuo"
+        android:id="@+id/imgbt_backhome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/detail_back"

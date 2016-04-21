@@ -47,7 +47,7 @@ public class QuestionAdapter extends ArrayAdapter<Question>  {
        viewHodler.quesCont.setText(question.getQuestionContent());
        viewHodler.quesTime.setText(question.getCreatedAt());
        String picPath=question.getStudentIcon().getFileUrl(context);
-       if(picPath!=null){
+       if(picPath!=null ){
     	   //设置网络加载后的图片
     	   NetWorkImgeUtil.getInstance(context).imageRequest(picPath,
     			   viewHodler.imageIcon);

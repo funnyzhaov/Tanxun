@@ -11,6 +11,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.AddQuestionActivity;
 import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.QuestionDetailsActivity;
 import com.wenjie.app.Tanxun.model.Question;
 import com.wenjie.app.Tanxun.model.StudentInfo;
@@ -23,9 +24,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 /**
  * Home主页
@@ -41,6 +45,11 @@ public class HomeFragment extends Fragment {
 	PullToRefreshListView Pulllistview;    
 	ListView mMsgListView;   
 	private int limit = 7;		// 每页的数据是7条
+	
+	/*
+	 * 提问组件
+	 */
+	private ImageButton plusQuestion;//添加问题按钮
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -61,6 +70,17 @@ public class HomeFragment extends Fragment {
 	 */
 	private void initListView(){
 		InBaseActivity=getActivity();
+		//找到Button控件
+		plusQuestion=(ImageButton)homeview.findViewById(R.id.imgbt_plus);
+		//跳转到提问页面
+		plusQuestion.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intentto=new Intent(InBaseActivity,AddQuestionActivity.class);
+				startActivity(intentto);
+			}
+		});
 		Pulllistview=(PullToRefreshListView)homeview.findViewById(R.id.list_question);
 		//设置子项单击事件
 		Pulllistview.setOnItemClickListener(new OnItemClickListener() {
