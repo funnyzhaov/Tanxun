@@ -11,6 +11,7 @@ import com.wenjie.app.Tanxun.util.RoundImage;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -47,6 +48,14 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		initView();
 		return personView;
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		initView();
+	}
+	
+
 	/**
 	 * 初始化视图
 	 */
@@ -56,7 +65,10 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		textStuName=(TextView)personView
 				.findViewById(R.id.text_studentName);
 		imageHead=(ImageView)personView.findViewById(R.id.image_head);
-		studentId=InBaseActivity.getIntent().getStringExtra("studentId");
+		//尝试用文件取出id
+		SharedPreferences pref=getActivity().getSharedPreferences("nowstudentdata", 0);
+		studentId=pref.getString("stuid", "");
+		//studentId=InBaseActivity.getIntent().getStringExtra("studentId");
 		modifyInfoLay=(LinearLayout)personView.findViewById(R.id.modify_info);
 		modifyInfoLay.setOnClickListener(this);
 		isOnlie=isOnline(studentId);
@@ -74,6 +86,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 				Intent intent=new Intent(InBaseActivity,ModifyInfoActivity.class);
 				intent.putExtra("studentName", studentName);
 				startActivity(intent);
+				
 			}
 		}else{
 			//跳转至登录页面
@@ -103,6 +116,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		{
 
 			if(imagePath!=null){
+				Log.d("picupdate", imagePath);
 				Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
 				//得到图片原始的高宽
 				int rawHeight = rawBitmap.getHeight();

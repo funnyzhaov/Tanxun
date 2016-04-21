@@ -8,6 +8,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
 import com.wenjie.app.Tanxun.Controller.frag_controller.IModifyInfoView;
 import com.wenjie.app.Tanxun.activity.BaseActivity;
 import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
@@ -51,15 +52,26 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	private ImageView personImage;//个人头像
 	private TextView modifyText;//编辑文本
 	private TextView uploadText;//完成文本
-	private String picPath;//图片路径
+	private String picPath="";//图片路径
 	private String personObjectId;//当前学生的ObjectId
 	private String nowpicPath;//当前图片路径
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modify_person);
 		initViewInfo();
+		
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		initViewInfo();
+	}
+
 	/**
 	 * 初始化视图信息
 	 */
@@ -100,7 +112,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	}
 	//如果此头像和加载到APP中的头像一致，不上传
 	public boolean isChoose(){
-		if(picPath.equals(nowpicPath)){
+		if(picPath.equals(nowpicPath)||picPath.equals("")){
 			return false;
 		}
 		else{
@@ -113,7 +125,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		stuSexText.setText(stuinfo.getStudentSex());
 		stuLevelText.setText(stuinfo.getStudentLevel());
 		stuMajorText.setText(stuinfo.getMajor());
-		nowpicPath=getApplicationContext().getCacheDir()+"/bmob/"+stuinfo.getStudentIcon().getFilename();
+		
 	}
 	@Override
 	public void updateImage(String imagePath) {
@@ -121,6 +133,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 				.equals(getResources().getDrawable(R.drawable.head).getConstantState())){
 
 			if(imagePath!=null){
+				nowpicPath=imagePath;
 				Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
 				//得到图片原始的高宽
 				int rawHeight = rawBitmap.getHeight();
@@ -253,9 +266,9 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 					@Override
 					public void onSuccess() {
 						Toast.makeText(ModifyInfoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
-						Intent intent=new Intent(ModifyInfoActivity.this,BaseActivity.class);
-						startActivity(intent);
-						finish();
+						clearPicPath();
+						initViewInfo();
+						
 					}
 
 					@Override
@@ -280,6 +293,13 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	public void getStudentObjectId(StudentInfo stuinfo) {
 		personObjectId=stuinfo.getObjectId();
 	}
+	/**
+	 * 清除PicPath
+	 */
+	public void clearPicPath(){
+		picPath="";
+	}
+	
 
 
 }
