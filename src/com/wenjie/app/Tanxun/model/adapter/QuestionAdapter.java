@@ -46,14 +46,14 @@ public class QuestionAdapter extends ArrayAdapter<Question>  {
        viewHodler.quesTitle.setText(question.getQuestionTitle());
        viewHodler.quesCont.setText(question.getQuestionContent());
        viewHodler.quesTime.setText(question.getCreatedAt());
-       String picPath=question.getStudentIcon().getFileUrl(context);
-       if(picPath!=null ){
-    	   //设置网络加载后的图片
-    	   NetWorkImgeUtil.getInstance(context).imageRequest(picPath,
-    			   viewHodler.imageIcon);
+       if(question.getStudentIcon()!=null){
+    	   String picPath=question.getStudentIcon().getFileUrl(context);
+    		   //设置网络加载后的图片
+    		   NetWorkImgeUtil.getInstance(context).imageRequest(picPath,
+    				   viewHodler.imageIcon);
        }else{
-    	   viewHodler.imageIcon.setImageResource(com.wenjie.app.Tanxun.R.drawable.ic_launcher);
-       }
+		   viewHodler.imageIcon.setImageResource(com.wenjie.app.Tanxun.R.drawable.ic_launcher);
+	   }
        return  view;
    }
 	@Override
