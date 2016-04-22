@@ -27,7 +27,7 @@ import cn.bmob.v3.listener.GetListener;
  */
 public class IStudentImpl implements IStudent {
 	private String picPath;
-	StudentInfo stuInfo;                   //学生实例
+	StudentInfo stuInfo=null;                   //学生实例
 	private Handler handler;	
 
 	public IStudentImpl(){
@@ -45,34 +45,40 @@ public class IStudentImpl implements IStudent {
 			@Override
 			public void onSuccess(List<StudentInfo> arg0) {
 				Intent intent=new Intent(context,BaseActivity.class);
-				stuInfo=arg0.get(0);
-				if(stuInfo!=null){
-					if(stuId.equals(stuInfo.getStudentId())&& 
-							stuPawd.equals(stuInfo.getStudentPasswd())){
-						logincon.onsetProgressBarVin(View.INVISIBLE);
-						
-//						intent.putExtra("studentId", stuId);				//将学号信息放入intent
-						Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),//用一个封装的Log打印
-								Toast.LENGTH_SHORT).show();
-						BmobFile fileIcon=stuInfo.getStudentIcon();
-						if(fileIcon!=null){
-							logincon.startServiceForupload(fileIcon);	   //再进入主页面的同时，开启后台服务下载个人头像
+				if(arg0.isEmpty()){
+					logincon.onsetProgressBarVin(View.INVISIBLE);
+					Toast.makeText(context, "请检查学号是否正确", Toast.LENGTH_SHORT).show();
+				}else{
+					stuInfo=arg0.get(0);
+					if(stuInfo!=null){
+						if(stuId.equals(stuInfo.getStudentId())&& 
+								stuPawd.equals(stuInfo.getStudentPasswd())){
+							logincon.onsetProgressBarVin(View.INVISIBLE);
+
+							//						intent.putExtra("studentId", stuId);				//将学号信息放入intent
+							Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),//用一个封装的Log打印
+									Toast.LENGTH_SHORT).show();
+							BmobFile fileIcon=stuInfo.getStudentIcon();
+							if(fileIcon!=null){
+								logincon.startServiceForupload(fileIcon);	   //再进入主页面的同时，开启后台服务下载个人头像
+							}
+							//将个人学号信息放在SharedPreferences中
+							SharedPreferences.Editor editor=context.getSharedPreferences("nowstudentdata", 0).edit();
+							editor.putString("stuid", stuId);
+							editor.commit();
+							logincon.enterBaseActivity(intent);
 						}
-						//将个人学号信息放在SharedPreferences中
-						SharedPreferences.Editor editor=context.getSharedPreferences("nowstudentdata", 0).edit();
-						editor.putString("stuid", stuId);
-						editor.commit();
-						logincon.enterBaseActivity(intent);
-					}else{
-						logincon.onsetProgressBarVin(View.INVISIBLE);
-						Toast.makeText(context, "密码错误!", Toast.LENGTH_SHORT).show();
+						else{
+							logincon.onsetProgressBarVin(View.INVISIBLE);
+							Toast.makeText(context, "密码错误!", Toast.LENGTH_SHORT).show();
+						}
 					}
 				}
 			}
 
 			@Override
 			public void onError(int arg0, String arg1) {
-				//				Toast.makeText(context, "查询失败，请检查学号是否正确", Toast.LENGTH_SHORT).show();
+				
 			}
 		});
 

@@ -8,6 +8,7 @@ import com.wenjie.app.Tanxun.Controller.ILoginController;
 import com.wenjie.app.Tanxun.model.IStudent;
 import com.wenjie.app.Tanxun.model.IStudentImpl;
 import com.wenjie.app.Tanxun.service.UploadIconService;
+import com.wenjie.app.Tanxun.util.NetWorkTUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 /**
  * µÇÂ¼Activity
  * @author dell
@@ -58,8 +60,12 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 		Intent intent=new Intent(this, BaseActivity.class);
 		switch (v.getId()) {
 		case R.id.loginButton:
-			Istudent.doLoginHandle(idText.getText().toString(),
-					passwdText.getText().toString(),this,this);
+			if(NetWorkTUtil.isNetAvailable(this)){
+				Istudent.doLoginHandle(idText.getText().toString(),
+						passwdText.getText().toString(),this,this);
+			}else{
+				Toast.makeText(this, "ÍøÂçÎÞÁ¬½Ó", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		default:
 			break;
