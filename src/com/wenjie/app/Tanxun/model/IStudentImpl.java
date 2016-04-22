@@ -51,7 +51,7 @@ public class IStudentImpl implements IStudent {
 							stuPawd.equals(stuInfo.getStudentPasswd())){
 						logincon.onsetProgressBarVin(View.INVISIBLE);
 						
-						intent.putExtra("studentId", stuId);				//将学号信息放入intent
+//						intent.putExtra("studentId", stuId);				//将学号信息放入intent
 						Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),//用一个封装的Log打印
 								Toast.LENGTH_SHORT).show();
 						BmobFile fileIcon=stuInfo.getStudentIcon();
@@ -94,6 +94,8 @@ public class IStudentImpl implements IStudent {
 	@Override
 	public void doPersonShow(String studentId, final Context context,final IStudentInfoView infoView) {
 		BmobQuery<StudentInfo> query=new BmobQuery<StudentInfo>();			//通过学号查找姓名
+		query.clearCachedResult(context, StudentInfo.class);
+		query.setCachePolicy(CachePolicy.IGNORE_CACHE);
 		query.addWhereEqualTo("studentId", studentId);
 		query.setLimit(5);
 		query.findObjects(context, new FindListener<StudentInfo>() {
@@ -113,8 +115,6 @@ public class IStudentImpl implements IStudent {
 				infoView.updateInfoImage(imagePath);
 				Log.d("pic", imagePath);
 				Toast.makeText(context, "查询个人信息成功!",Toast.LENGTH_SHORT).show();
-				//Bug分析:1.(图片问题)当用户选择重新上传头像后，由于数据库里的文件名已经更改，而APP本地存储的是上一次的文件名,因此无法加载。出现空指针异常
-				//      2. (出现未登录问题)上传新图片后，studentId丢失
 			}
 		});
 	}

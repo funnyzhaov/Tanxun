@@ -29,7 +29,7 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 	private Button loginButton;//登录按钮
 	private EditText idText;//学号
 	private EditText passwdText;//密码
-	private TextView jumpText;//跳过
+	//private TextView jumpText;//跳过
 	private ProgressBar progressLogin;//圆形进度条
 	private final String AppId="dbfed305dbefc572cc9f0805b25c9d14";//Bmob应用ID
 	@Override
@@ -46,13 +46,13 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 		loginButton=(Button)findViewById(R.id.loginButton);
 		idText=(EditText)findViewById(R.id.idText);
 		passwdText=(EditText)findViewById(R.id.passwdText);
-		jumpText=(TextView)findViewById(R.id.jumpText);
+		//jumpText=(TextView)findViewById(R.id.jumpText);
 		progressLogin=(ProgressBar)findViewById(R.id.progresslogin);
 
 		//初始设置进度条不可见
 		onsetProgressBarVin(View.INVISIBLE);
 		loginButton.setOnClickListener(this);
-		jumpText.setOnClickListener(this);
+		//jumpText.setOnClickListener(this);
 		Istudent=new IStudentImpl();
 	}
 
@@ -64,9 +64,9 @@ public class LoginActivity extends Activity implements OnClickListener,ILoginCon
 			Istudent.doLoginHandle(idText.getText().toString(),
 					passwdText.getText().toString(),this,this);
 			break;
-		case R.id.jumpText:
-			enterBaseActivity(intent);
-			break;
+//		case R.id.jumpText:
+//			enterBaseActivity(intent);
+//			break;
 		default:
 			break;
 		}

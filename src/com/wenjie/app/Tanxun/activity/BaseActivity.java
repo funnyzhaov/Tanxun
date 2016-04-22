@@ -1,11 +1,14 @@
 package com.wenjie.app.Tanxun.activity;
 
+import cn.bmob.v3.BmobQuery;
+
 import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.activity.fragment.HomeFragment;
 import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.activity.fragment.SearchFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -167,6 +170,12 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
 				exitTime = System.currentTimeMillis();   
 			} else {
+				//先清除缓存
+				BmobQuery.clearAllCachedResults(getApplicationContext());
+				//清除登录信息
+				SharedPreferences.Editor editor=getApplicationContext().getSharedPreferences("nowstudentdata", 0).edit();
+				editor.clear();
+				editor.commit();
 				finish();
 				System.exit(0);
 			}

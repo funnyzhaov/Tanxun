@@ -2,6 +2,7 @@ package com.wenjie.app.Tanxun.activity.fragment.Frag_activity;
 
 import java.io.File;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -15,6 +16,7 @@ import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 import com.wenjie.app.Tanxun.model.frag_model.IPerson;
 import com.wenjie.app.Tanxun.model.frag_model.IPersonImpl;
+import com.wenjie.app.Tanxun.service.UploadIconService;
 import com.wenjie.app.Tanxun.util.RoundImage;
 
 import android.annotation.TargetApi;
@@ -268,7 +270,9 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 						Toast.makeText(ModifyInfoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
 						clearPicPath();
 						initViewInfo();
-						
+						Intent intent=new Intent(ModifyInfoActivity.this,BaseActivity.class);
+						startActivity(intent);
+						finish();
 					}
 
 					@Override
@@ -298,8 +302,18 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	 */
 	public void clearPicPath(){
 		picPath="";
+		BmobQuery.clearAllCachedResults(getApplicationContext());
 	}
-	
+	@Override
+	public void startServiceForupload(BmobFile fileIcon) {
+		Intent intentService=new Intent(this,UploadIconService.class);
+		String IconUrl=fileIcon.getFileUrl(this);
+		String fileName=fileIcon.getFilename();
+		intentService.putExtra("IconUrl",IconUrl);
+		intentService.putExtra("fileName", fileName);
+		startService(intentService);
+		
+	}
 
 
 }

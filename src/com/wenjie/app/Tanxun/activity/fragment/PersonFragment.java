@@ -52,9 +52,15 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	@Override
 	public void onResume() {
 		super.onResume();
-		initView();
+		
 	}
 	
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		initView();
+	}
 
 	/**
 	 * ≥ı ºªØ ”Õº
@@ -144,4 +150,6 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 			}
 		}
 	}
+
+	
 }

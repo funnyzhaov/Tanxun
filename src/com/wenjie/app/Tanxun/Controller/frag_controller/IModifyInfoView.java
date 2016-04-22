@@ -1,5 +1,7 @@
 package com.wenjie.app.Tanxun.Controller.frag_controller;
 
+import cn.bmob.v3.datatype.BmobFile;
+
 import com.wenjie.app.Tanxun.model.StudentInfo;
 
 /**
@@ -23,4 +25,6 @@ public interface IModifyInfoView {
 	 * @param imagePath   ͼƬpath
 	 */
 	void updateImage(String imagePath);
+	void startServiceForupload(BmobFile fileIcon);
+	
 }

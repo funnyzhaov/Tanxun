@@ -31,6 +31,8 @@ public class IPersonImpl implements IPerson {
 				imofidyView.setTextInfo(arg0.get(0));
 				String imagePath=context.getApplicationContext().getCacheDir()+"/bmob/"+
 						arg0.get(0).getStudentIcon().getFilename();
+				//启动服务重新下载
+				imofidyView.startServiceForupload(arg0.get(0).getStudentIcon());
 				imofidyView.updateImage(imagePath);
 				imofidyView.getStudentObjectId(arg0.get(0));
 			}

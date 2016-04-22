@@ -39,15 +39,7 @@
          android:textColor="#ffffff"
          android:background="#81d1e3"
          />
-     <TextView 
-         android:id="@+id/jumpText"
-         android:layout_marginTop="10dp"
-         android:layout_gravity="center"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:textColor="#81d1e3"
-         android:text="跳过"
-         />
+     
 </LinearLayout>
 
 </LinearLayout>
