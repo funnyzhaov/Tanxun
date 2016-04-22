@@ -120,7 +120,6 @@ public class IStudentImpl implements IStudent {
 				infoView.UpdateInfoName(studentName);
 				infoView.updateInfoImage(imagePath);
 				Log.d("pic", imagePath);
-				Toast.makeText(context, "查询个人信息成功!",Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

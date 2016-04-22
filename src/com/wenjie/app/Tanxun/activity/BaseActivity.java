@@ -6,6 +6,7 @@ import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.activity.fragment.HomeFragment;
 import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.activity.fragment.SearchFragment;
+import com.wenjie.app.Tanxun.util.DataCleanManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -176,6 +177,8 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 				SharedPreferences.Editor editor=getApplicationContext().getSharedPreferences("nowstudentdata", 0).edit();
 				editor.clear();
 				editor.commit();
+				//Çå³ýÍ¼Æ¬ÎÄ¼þ
+				DataCleanManager.cleanApplicationData(getApplicationContext(),getApplicationContext().getCacheDir()+"/bmob");
 				finish();
 				System.exit(0);
 			}
