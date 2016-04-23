@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@style/NoTitleBarTheme" >
         <activity
-            android:name="com.wenjie.app.Tanxun.activity.LoginActivity"
+            android:name="com.wenjie.app.Tanxun.activity.AppstartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.wenjie.app.Tanxun.activity.LoginActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.BaseActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.QuestionDetailsActivity"></activity>
