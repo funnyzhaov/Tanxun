@@ -42,6 +42,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	private String studentName="";//学生姓名
 	private ImageView imageHead;//学生头像图片
 	private LinearLayout clearCahe;//清除缓存组件
+	private TextView cacheSize;//缓存文本
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -74,6 +75,8 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 				.findViewById(R.id.text_studentName);
 		imageHead=(ImageView)personView.findViewById(R.id.image_head);
 		clearCahe=(LinearLayout)personView.findViewById(R.id.clear_data);
+		cacheSize=(TextView)personView.findViewById(R.id.cacheSize);
+		setcacheSize();
 		//尝试用文件取出id
 		SharedPreferences pref=getActivity().getSharedPreferences("nowstudentdata", 0);
 		studentId=pref.getString("stuid", "");
@@ -92,9 +95,8 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.clear_data:
-			Log.d("dianji", "点击了");
-			DataCleanManager.cleanApplicationData(getActivity().getApplicationContext(), 
-					"");
+			DataCleanManager.clearAllCache(getActivity().getApplicationContext()); 
+			setcacheSize();
 			break;
 		case R.id.modify_info:
 			if(isOnlie){
@@ -112,6 +114,17 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 			break;
 		}
 		
+	}
+	/**
+	 * 更新缓存大小
+	 */
+	public void setcacheSize(){
+		try {
+			cacheSize.setText(DataCleanManager.getTotalCacheSize(getActivity().getApplicationContext()));
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 判断用户是否登录
@@ -137,32 +150,37 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 			if(imagePath!=null){
 				Log.d("picupdate", imagePath);
 				Bitmap rawBitmap=BitmapFactory.decodeFile(imagePath);
-				//得到图片原始的高宽
-				int rawHeight = rawBitmap.getHeight();
-				int rawWidth = rawBitmap.getWidth();
-				// 设定图片新的高宽
-				int newHeight = 90;
-				int newWidth = 90;
-				// 计算缩放因子
-				float heightScale = ((float) newHeight) / rawHeight;
-				float widthScale = ((float) newWidth) / rawWidth;
-				// 新建立矩阵
-				Matrix matrix = new Matrix();
-				matrix.postScale(heightScale, widthScale);
-				// 压缩后图片的宽和高以及kB大小均会变化
-				Bitmap newBitmap = Bitmap.createBitmap(rawBitmap, 0, 0, rawWidth,
-						rawHeight, matrix, true);
-				//回收大图的对象
-				if(!rawBitmap.isRecycled())
-				{
-					rawBitmap.recycle();
-				}     
-				imageHead.setImageBitmap(RoundImage.roundImage(newBitmap));
+				if(rawBitmap!=null){
+					//得到图片原始的高宽
+					int rawHeight = rawBitmap.getHeight();
+					int rawWidth = rawBitmap.getWidth();
+					// 设定图片新的高宽
+					int newHeight = 90;
+					int newWidth = 90;
+					// 计算缩放因子
+					float heightScale = ((float) newHeight) / rawHeight;
+					float widthScale = ((float) newWidth) / rawWidth;
+					// 新建立矩阵
+					Matrix matrix = new Matrix();
+					matrix.postScale(heightScale, widthScale);
+					// 压缩后图片的宽和高以及kB大小均会变化
+					Bitmap newBitmap = Bitmap.createBitmap(rawBitmap, 0, 0, rawWidth,
+							rawHeight, matrix, true);
+					//回收大图的对象
+					if(!rawBitmap.isRecycled())
+					{
+						rawBitmap.recycle();
+					}     
+					imageHead.setImageBitmap(RoundImage.roundImage(newBitmap));
+
+				}
 			}else{
 				Toast.makeText(InBaseActivity, "failed to get image", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
+
+	
 
 	
 }

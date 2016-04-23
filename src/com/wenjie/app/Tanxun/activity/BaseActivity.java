@@ -178,7 +178,7 @@ public class BaseActivity extends FragmentActivity implements OnClickListener{
 				editor.clear();
 				editor.commit();
 				//Çå³ýÍ¼Æ¬ÎÄ¼þ
-				DataCleanManager.cleanApplicationData(getApplicationContext(),getApplicationContext().getCacheDir()+"/bmob");
+				DataCleanManager.clearAllCache(getApplicationContext());
 				finish();
 				System.exit(0);
 			}

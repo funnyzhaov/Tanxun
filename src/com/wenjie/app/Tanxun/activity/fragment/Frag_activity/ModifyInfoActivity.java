@@ -314,16 +314,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 		picPath="";
 		BmobQuery.clearAllCachedResults(getApplicationContext());
 	}
-	@Override
-	public void startServiceForupload(BmobFile fileIcon) {
-		Intent intentService=new Intent(this,UploadIconService.class);
-		String IconUrl=fileIcon.getFileUrl(this);
-		String fileName=fileIcon.getFilename();
-		intentService.putExtra("IconUrl",IconUrl);
-		intentService.putExtra("fileName", fileName);
-		startService(intentService);
-		
-	}
+	
 
 
 }

@@ -58,6 +58,7 @@ public class IStudentImpl implements IStudent {
 							//						intent.putExtra("studentId", stuId);				//将学号信息放入intent
 							Toast.makeText(context, "登陆成功！姓名:"+stuInfo.getStudentName(),//用一个封装的Log打印
 									Toast.LENGTH_SHORT).show();
+							
 							BmobFile fileIcon=stuInfo.getStudentIcon();
 							if(fileIcon!=null){
 								logincon.startServiceForupload(fileIcon);	   //再进入主页面的同时，开启后台服务下载个人头像
@@ -115,6 +116,7 @@ public class IStudentImpl implements IStudent {
 			public void onSuccess(List<StudentInfo> studentlist) {
 				StudentInfo studentInfo=studentlist.get(0);
 				String studentName=studentInfo.getStudentName();
+				
 				String imagePath=context.getApplicationContext().getCacheDir()+"/bmob/"+
 						studentInfo.getStudentIcon().getFilename();
 				infoView.UpdateInfoName(studentName);

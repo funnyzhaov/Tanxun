@@ -70,14 +70,23 @@
             android:layout_width="wrap_content"
             android:layout_height="60dip"
             android:src="@drawable/delete" />
-
-        <TextView
+		 <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="清除缓存"
             android:textColor="#605d5d"
             android:textSize="20dp" />
+        <TextView
+            android:id="@+id/cacheSize"
+            android:layout_marginLeft="100dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:text="0KB"
+            android:textColor="#3a3939"
+           />
     </LinearLayout>
     
     <LinearLayout

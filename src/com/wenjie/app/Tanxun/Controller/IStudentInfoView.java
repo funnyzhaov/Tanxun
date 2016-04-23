@@ -1,7 +1,5 @@
 package com.wenjie.app.Tanxun.Controller;
 
-import cn.bmob.v3.datatype.BmobFile;
-
 /**
  * 学生个人信息页面接口
  * @author dell
@@ -17,5 +15,6 @@ public interface IStudentInfoView {
 	 * 更新头像
 	 */
 	void updateInfoImage(String imagePath);
+	
 	
 }
