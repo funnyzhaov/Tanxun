@@ -9,6 +9,7 @@ import cn.bmob.v3.listener.SaveListener;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.wenjie.app.Tanxun.R;
+import com.wenjie.app.Tanxun.activity.BaseActivity;
 import com.wenjie.app.Tanxun.model.Comments;
 import com.wenjie.app.Tanxun.model.Question;
 import com.wenjie.app.Tanxun.model.StudentInfo;
@@ -16,6 +17,7 @@ import com.wenjie.app.Tanxun.model.adapter.CommentsAdapter;
 import com.wenjie.app.Tanxun.util.NetWorkImgeUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +54,7 @@ public class QuestionDetailsActivity extends Activity {
 	 */
 	private Button btnCommit;//发表
 	private EditText yourComment;//评论文本
+	private ImageButton imgbt_backhome;//返回
 	/*
 	 * 数据
 	 */
@@ -70,6 +74,16 @@ public class QuestionDetailsActivity extends Activity {
 	 * 初始化问题控件
 	 */
 	private void initQuestionView() {
+		imgbt_backhome=(ImageButton)findViewById(R.id.imgbt_backhome);
+		imgbt_backhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//Intent i=new Intent(QuestionDetailsActivity.this,BaseActivity.class);
+				//startActivity(i);
+				finish();
+			}
+		});
 		deQuestionTitle=(TextView)findViewById(R.id.dequestion_title);
 		deQuestionContent=(TextView)findViewById(R.id.dequestion_content);
 		deQuestionTime=(TextView)findViewById(R.id.dequestion_time);

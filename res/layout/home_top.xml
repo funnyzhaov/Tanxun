@@ -13,12 +13,6 @@
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
-        <ImageButton
-            android:id="@+id/imgbt_sousuo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/sousuo" />
     </LinearLayout>
 
     <LinearLayout

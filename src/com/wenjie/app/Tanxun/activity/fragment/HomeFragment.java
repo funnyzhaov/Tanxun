@@ -37,7 +37,7 @@ import android.widget.ListView;
  *
  */
 public class HomeFragment extends Fragment {
-	private Activity InBaseActivity;//当前Fragment的载体Activity
+	public static Activity InBaseActivity;//当前Fragment的载体Activity
 	private View homeview;
 	private QuestionAdapter adapter; //适配器
 	static List<Question> listdata=new ArrayList<Question>(); //数据集合
@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
 		return listdata;
 	}
 	
+	
 	/**
 	 * 初始化视图
 	 */
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
 			public void onClick(View v) {
 				Intent intentto=new Intent(InBaseActivity,AddQuestionActivity.class);
 				startActivity(intentto);
+				InBaseActivity.overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top);
 			}
 		});
 		Pulllistview=(PullToRefreshListView)homeview.findViewById(R.id.list_question);
@@ -94,6 +96,7 @@ public class HomeFragment extends Fragment {
 				int Id= nowQuestion.getQuestionId();
 				intent.putExtra("questionId", Id);
 				startActivity(intent);
+				
 			}
 		});
 		//设置监听事件

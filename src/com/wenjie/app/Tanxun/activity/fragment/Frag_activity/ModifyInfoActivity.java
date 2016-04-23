@@ -12,6 +12,7 @@ import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
 import com.wenjie.app.Tanxun.Controller.frag_controller.IModifyInfoView;
 import com.wenjie.app.Tanxun.activity.BaseActivity;
+import com.wenjie.app.Tanxun.activity.fragment.HomeFragment;
 import com.wenjie.app.Tanxun.activity.fragment.PersonFragment;
 import com.wenjie.app.Tanxun.model.StudentInfo;
 import com.wenjie.app.Tanxun.model.frag_model.IPerson;
@@ -36,6 +37,7 @@ import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +59,7 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	private String picPath="";//图片路径
 	private String personObjectId;//当前学生的ObjectId
 	private String nowpicPath;//当前图片路径
-	
+	private ImageButton back_person;//返回个人
 	
 	
 	@Override
@@ -78,6 +80,14 @@ public class ModifyInfoActivity extends Activity implements IModifyInfoView{
 	 * 初始化视图信息
 	 */
 	public void initViewInfo(){
+		back_person=(ImageButton)findViewById(R.id.back_person);
+		back_person.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		Iperson=new IPersonImpl();
 		personImage=(ImageView)findViewById(R.id.person_image);
 		modifyText=(TextView)findViewById(R.id.bianji_text);

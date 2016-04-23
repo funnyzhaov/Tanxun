@@ -9,6 +9,7 @@
         android:background="@drawable/border"
         android:orientation="horizontal" >
          <ImageButton 
+            android:id="@+id/back_person"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:background="@drawable/back"

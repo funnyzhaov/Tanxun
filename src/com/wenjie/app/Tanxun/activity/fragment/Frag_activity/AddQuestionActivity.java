@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 /**
  * 添加问题Activity
@@ -40,6 +41,7 @@ public class AddQuestionActivity extends Activity implements IAddQuestionView {
 	private EditText editque_content;//问题内容
 	private Button   editque_commit;//发表问题
 	private static String  nowquesObjectId;//当前问题Id
+	private ImageButton imgbt_backhome;//返回
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +52,16 @@ public class AddQuestionActivity extends Activity implements IAddQuestionView {
 	 * 初始化视图
 	 */
 	public void initView(){
+		imgbt_backhome=(ImageButton)findViewById(R.id.imgbt_backhome);
+		imgbt_backhome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i=new Intent(AddQuestionActivity.this,BaseActivity.class);
+				startActivity(i);
+				overridePendingTransition(R.anim.slide_in_from_top, R.anim.slide_out_to_bottom);
+			}
+		});
 		editque_title=(EditText)findViewById(R.id.addq_title);
 		editque_content=(EditText)findViewById(R.id.addq_content);
 		editque_commit=(Button)findViewById(R.id.addq_commit);
