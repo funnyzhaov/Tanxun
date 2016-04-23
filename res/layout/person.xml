@@ -27,12 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#605d5d"
             android:textSize="20dp" />
         <ImageView 
             android:id="@+id/image_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right"
+            android:src="@drawable/rightto"
             />
     </LinearLayout>
 
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="我的提问"
+            android:textColor="#605d5d"
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="清除缓存"
+            android:textColor="#605d5d"
             android:textSize="20dp" />
     </LinearLayout>
     
@@ -95,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="退出登录"
+            android:textColor="#605d5d"
             android:textSize="20dp" />
     </LinearLayout>
 

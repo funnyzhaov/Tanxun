@@ -13,7 +13,7 @@
             android:id="@+id/back_person"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@drawable/back"
+			android:background="@drawable/leftblack"
 			android:layout_gravity="center"
              />
          <TextView 
@@ -21,6 +21,7 @@
              android:layout_width="0dp"
              android:layout_height="wrap_content"
              android:text="修改个人头像"
+             android:textColor="#605d5d"
              android:textSize="20sp"
              android:layout_gravity="center"
              android:gravity="center"
@@ -30,6 +31,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="完成"
+			android:textStyle="bold"
 			android:textSize="18sp"
 			android:textColor="#4F94CD"
 			android:layout_gravity="center"
@@ -58,7 +60,7 @@
             android:gravity="center"
             android:text="编辑"
             android:textSize="20dp"
-            android:textColor="#4169E1" />
+            android:textColor="#4F94CD" />
     </LinearLayout>
  <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +83,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#292421"/>
+            android:textColor="#605d5d"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,7 +106,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#292421"/>
+            android:textColor="#605d5d"/>
     </LinearLayout>
 	 <LinearLayout
         android:layout_width="match_parent"
@@ -127,7 +129,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#292421"/>
+            android:textColor="#605d5d"/>
     </LinearLayout>
      <LinearLayout
         android:layout_width="match_parent"
@@ -150,7 +152,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#292421"/>
+            android:textColor="#605d5d"/>
     </LinearLayout>
 
 </LinearLayout>

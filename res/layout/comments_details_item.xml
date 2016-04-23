@@ -29,7 +29,7 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="2dp"
                 android:layout_marginTop="20dp"
                 android:text="Miller"
                 android:textColor="#605d5d"
@@ -39,12 +39,12 @@
                 android:id="@+id/commentCont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="2dp"
                 android:layout_marginRight="80dp"
                 android:layout_marginTop="15dp"
                 android:text="如果你无法简洁的表达你的想法，那只能说明你还不够了解它。"
                 android:textColor="#848383"
-                android:textSize="10dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/commentTime"
