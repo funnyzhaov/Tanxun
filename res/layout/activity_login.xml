@@ -55,7 +55,7 @@
          android:layout_height="50dp"
          android:text="登录"
          android:textColor="#ffffff"
-         android:background="#81d1e3"
+         android:background="@drawable/login"
          />
      
 </LinearLayout>

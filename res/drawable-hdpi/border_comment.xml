@@ -3,13 +3,12 @@
     <!-- 连框颜色值 -->
 <item>
     <shape>
-        <solid android:color="#4169E1" />
+        <solid android:color="#eaeae8" />
     </shape>
 </item>
 <!-- 主体背景颜色值 -->
  <!-- 此处定义只有上下两边有边框 高度为1像素-->
 <item
-    android:bottom="1dp"
     android:top="1dp">
     <!--边框里面背景颜色-->
     <shape>

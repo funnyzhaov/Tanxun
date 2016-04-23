@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fcfcfc"
     android:orientation="vertical" >
 
     <include layout="@layout/details_home_top" />
@@ -15,6 +16,7 @@
         android:hint="问题标题!" />
 
     <EditText
+        android:layout_marginTop="20dp"
         android:id="@+id/addq_content"
         android:layout_width="match_parent"
         android:layout_height="150dp"

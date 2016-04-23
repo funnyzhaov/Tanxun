@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp"
+    android:padding="5dp"
     android:background="@drawable/border"
     android:orientation="horizontal" >
 
@@ -20,7 +21,7 @@
             android:padding="1dp"
             android:layout_marginTop="15dp"
             android:text="英语四级好过吗"
-            android:textColor="#87CEEB"
+            android:textColor="#605d5d"
             android:textSize="20dp" />
 
         <TextView
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="我是大一的小学弟"
-            android:textColor="#8c888c"
+            android:textColor="#848383"
             android:textSize="15dp" />
 
         <TextView
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="2016-4-11 18:25"
-            android:textColor="#4169E1"
+            android:textColor="#7f7c7c"
             android:textSize="15dp" />
     </LinearLayout>
 
