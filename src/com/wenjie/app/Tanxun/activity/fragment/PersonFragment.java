@@ -11,6 +11,8 @@ import com.wenjie.app.Tanxun.util.RoundImage;
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -43,6 +45,8 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	private ImageView imageHead;//学生头像图片
 	private LinearLayout clearCahe;//清除缓存组件
 	private TextView cacheSize;//缓存文本
+	
+	private LinearLayout outlogin;//退出登录
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -76,6 +80,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		imageHead=(ImageView)personView.findViewById(R.id.image_head);
 		clearCahe=(LinearLayout)personView.findViewById(R.id.clear_data);
 		cacheSize=(TextView)personView.findViewById(R.id.cacheSize);
+		outlogin=(LinearLayout)personView.findViewById(R.id.outlogin);
 		setcacheSize();
 		//尝试用文件取出id
 		SharedPreferences pref=getActivity().getSharedPreferences("nowstudentdata", 0);
@@ -84,6 +89,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		modifyInfoLay=(LinearLayout)personView.findViewById(R.id.modify_info);
 		modifyInfoLay.setOnClickListener(this);
 		clearCahe.setOnClickListener(this);
+		outlogin.setOnClickListener(this);
 		isOnlie=isOnline(studentId);
 	}
 	@Override
@@ -109,6 +115,10 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 				Intent intent=new Intent(InBaseActivity,LoginActivity.class);
 				startActivity(intent);
 			}
+			break;
+		case R.id.outlogin:
+			//退出登录
+			outLogin();
 			break;
 		default:
 			break;
@@ -179,7 +189,33 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 			}
 		}
 	}
-
+	/**
+	 * 退出登录
+	 */
+	public void outLogin(){
+		AlertDialog.Builder outDialog=new AlertDialog.Builder(InBaseActivity);
+		outDialog.setTitle("退出登录");
+		outDialog.setMessage("确定要退出吗？");
+		outDialog.setCancelable(false);
+		outDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//先清除缓存,然后跳转至登录页面
+				DataCleanManager.clearAllCache(getActivity().getApplicationContext());
+				Intent toLogin=new Intent(InBaseActivity,LoginActivity.class);
+				startActivity(toLogin);
+			}
+		});
+		outDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+			}
+		});
+		outDialog.show();
+	}
 	
 
 	
