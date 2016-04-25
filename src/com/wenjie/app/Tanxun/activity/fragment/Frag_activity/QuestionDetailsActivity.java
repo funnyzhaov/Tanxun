@@ -152,6 +152,9 @@ public class QuestionDetailsActivity extends Activity {
 							listdata.add(td);
 						}
 						adapter.notifyDataSetChanged();
+					}else{
+						listdata.clear();
+						adapter.notifyDataSetChanged();
 					}
 					
 				

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <include layout="@layout/nostatus_top"/>
+     <include layout="@layout/about_top"/>
      <TextView 
          android:layout_marginTop="30dp"
          android:layout_width="wrap_content"
