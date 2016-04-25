@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:orientation="vertical"
+	
    >
-   <TextView 
+    <TextView 
        android:layout_marginTop="20dp"
        android:textStyle="bold"
        android:text="探寻"
@@ -22,22 +23,24 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        />
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+	<LinearLayout 
+   	 android:layout_width="match_parent"
+   	 android:layout_height="match_parent"
+      android:orientation="vertical"
     >
     <EditText 
         android:id="@+id/idText"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:hint="输入学号"
         />
      <EditText 
         android:id="@+id/passwdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:password="true"
         android:hint="输入密码"
         />

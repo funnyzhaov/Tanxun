@@ -12,7 +12,8 @@
     android:bottom="2dp"
     >
     <!--边框里面背景颜色 白色-->
-    <shape>
+    
+    <shape >
         <solid android:color="#ffffff" />
     </shape>
 </item>

@@ -138,6 +138,21 @@ public class HomeFragment extends Fragment {
 					listdata.clear();
 					// 将本次查询的数据添加到bankCards中
 					for (Question td : list) {
+						//字符串截取处理
+						String newContent="";
+						String newTitle="";
+						if(td.getQuestionTitle().length()<=20){
+							newTitle=td.getQuestionTitle();
+						}else{
+							newTitle=td.getQuestionTitle().substring(0, 20)+"...?";
+						}
+						if(td.getQuestionContent().length()<=12){
+							 newContent=td.getQuestionContent();
+						}else{
+							newContent=td.getQuestionContent().substring(0, 12)+"...";
+						}
+						td.setQuestionTitle(newTitle);
+						td.setQuestionContent(newContent);
 						
 						listdata.add(td);
 					}

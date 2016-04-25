@@ -49,10 +49,10 @@
 
         <ImageView
             android:id="@+id/qu_image"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:layout_gravity="bottom"
             android:src="@drawable/head" />
     </LinearLayout>
 
