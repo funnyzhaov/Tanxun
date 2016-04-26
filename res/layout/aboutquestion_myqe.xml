@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<include layout="@layout/aboutquestion_myqe_top"/>
+ 	<TextView 
+ 	    android:id="@+id/tv_qe_title"
+ 	    android:layout_marginTop="5dp"
+ 	    android:paddingTop="5dp"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="0dp"
+ 	    android:layout_weight="1"
+ 	    android:text=".............."
+ 	    android:textColor="#605d5d"
+ 	     android:textSize="20dp"
+ 	    android:layout_gravity="center"
+ 	    />
+ 	<TextView 
+ 	    android:id="@+id/tv_qe_content"
+ 	    android:padding="10dp"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="0dp"
+ 	    android:layout_weight="8"
+ 	    android:text="...................."
+ 	    android:textSize="15dp"
+ 	    android:textColor="#848383"
+ 	    />
+ 	<FrameLayout 
+ 	    android:id="@+id/fl_comments"
+ 	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:gravity="right"
+ 	    >
+	<ImageButton 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:background="@drawable/comments"
+	    />
+	<TextView 
+	    android:id="@+id/tv_qe_num"
+	    android:layout_marginTop="8dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:textColor="#848383"
+	    android:textSize="20dp"
+	    android:text="9"
+	    />
+	</FrameLayout>
+</LinearLayout>

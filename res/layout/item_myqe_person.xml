@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/border"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/tv_qeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:padding="1dp"
+        android:text="英语四级好过吗"
+        android:textColor="#605d5d"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_qeContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="我是大一的小学弟"
+        android:textColor="#848383"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_qeTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="2016-4-11 18:25"
+        android:textColor="#7f7c7c"
+        android:textSize="15dp" />
+
+</LinearLayout>

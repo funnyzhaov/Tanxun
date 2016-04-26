@@ -4,6 +4,7 @@ import com.wenjie.app.Tanxun.R;
 import com.wenjie.app.Tanxun.Controller.IStudentInfoView;
 import com.wenjie.app.Tanxun.activity.LoginActivity;
 import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.ModifyInfoActivity;
+import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionListActivity;
 import com.wenjie.app.Tanxun.model.IStudent;
 import com.wenjie.app.Tanxun.model.IStudentImpl;
 import com.wenjie.app.Tanxun.util.DataCleanManager;
@@ -47,6 +48,8 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	private TextView cacheSize;//缓存文本
 	
 	private LinearLayout outlogin;//退出登录
+	
+	private LinearLayout IImyQuestion;//我的提问组件
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -78,6 +81,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		textStuName=(TextView)personView
 				.findViewById(R.id.text_studentName);
 		imageHead=(ImageView)personView.findViewById(R.id.image_head);
+		IImyQuestion=(LinearLayout)personView.findViewById(R.id.myquestion);
 		clearCahe=(LinearLayout)personView.findViewById(R.id.clear_data);
 		cacheSize=(TextView)personView.findViewById(R.id.cacheSize);
 		outlogin=(LinearLayout)personView.findViewById(R.id.outlogin);
@@ -88,6 +92,7 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 		//studentId=InBaseActivity.getIntent().getStringExtra("studentId");
 		modifyInfoLay=(LinearLayout)personView.findViewById(R.id.modify_info);
 		modifyInfoLay.setOnClickListener(this);
+		IImyQuestion.setOnClickListener(this);
 		clearCahe.setOnClickListener(this);
 		outlogin.setOnClickListener(this);
 		isOnlie=isOnline(studentId);
@@ -100,6 +105,13 @@ public class PersonFragment extends Fragment implements IStudentInfoView ,OnClic
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		//我的提问
+		case R.id.myquestion:
+			Intent myQueintent=new Intent(InBaseActivity,MyQuestionListActivity.class);
+			myQueintent.putExtra("myStuid",studentId);
+			startActivity(myQueintent);
+			break;
+		//清理缓存
 		case R.id.clear_data:
 			DataCleanManager.clearAllCache(getActivity().getApplicationContext()); 
 			setcacheSize();
