@@ -10,6 +10,7 @@ import com.wenjie.app.Tanxun.model.Comments;
 import com.wenjie.app.Tanxun.model.Question;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -107,9 +108,21 @@ public class MyQuestionDetails extends Activity implements OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
+		switch (v.getId()) {
 		//返回问题详情页面
-		
+		case R.id.ib_back_myqe:
+			finish();
+			break;
 		//进入评论列表页面
+		case R.id.fl_comments:
+			Intent intentc=new Intent(this,MyQuestionComments.class);
+			intentc.putExtra("myquedetailid", myQeId);
+			startActivity(intentc);
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 }

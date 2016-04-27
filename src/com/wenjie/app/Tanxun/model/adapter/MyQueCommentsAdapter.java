@@ -3,14 +3,9 @@ package com.wenjie.app.Tanxun.model.adapter;
 import java.util.List;
 
 import com.wenjie.app.Tanxun.R;
-import com.wenjie.app.Tanxun.activity.fragment.HomeFragment;
 import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionComments;
-import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionDetails;
-import com.wenjie.app.Tanxun.activity.fragment.Frag_activity.QuestionDetailsActivity;
 import com.wenjie.app.Tanxun.model.Comments;
-import com.wenjie.app.Tanxun.model.Question;
 import com.wenjie.app.Tanxun.util.NetWorkImgeUtil;
-
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,15 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-/**
- * 评论适配器
- * @author dell
- *
- */
-public class CommentsAdapter extends ArrayAdapter<Comments> {
+
+public class MyQueCommentsAdapter extends ArrayAdapter<Comments> {
 	private Context context;
 	private int resourceId;
-	public CommentsAdapter(Context context, int resource, List<Comments> objects) {
+	public MyQueCommentsAdapter(Context context, int resource, List<Comments> objects) {
 		super(context, resource, objects);
 		this.context=context;
 		this.resourceId=resource;
@@ -64,7 +55,7 @@ public class CommentsAdapter extends ArrayAdapter<Comments> {
 	}
 	@Override
 	public Comments getItem(int position) {
-		return QuestionDetailsActivity.getListData().get(position) ;
+		return MyQuestionComments.getListData().get(position) ;
 	}
 	class ViewHolder{
 		TextView commentUserName;//评论人姓名

@@ -38,6 +38,7 @@
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.AddQuestionActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionListActivity"></activity>
         <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionDetails"></activity>
+        <activity android:name="com.wenjie.app.Tanxun.activity.fragment.Frag_activity.MyQuestionComments"></activity>
         <service android:name="com.wenjie.app.Tanxun.service.UploadIconService"></service>
     </application>
 
