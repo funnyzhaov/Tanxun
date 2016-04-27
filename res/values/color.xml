@@ -2,7 +2,7 @@
 <resources>
 
 
-    <string name="bule_color">#81d1e3</string>
+    <string name="bule_color" translatable="false">#81d1e3</string>
     
 
     
