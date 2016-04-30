@@ -21,6 +21,7 @@ public class NetWorkImgeUtil {
 	    private Context context;
 	    private NetWorkImgeUtil(Context context) {
 	        this.context = context;
+	        //构建一个请求队列
 	        queue = Volley.newRequestQueue(context);
 	    }
 	   
@@ -43,7 +44,7 @@ public class NetWorkImgeUtil {
 	            	Bitmap newbitmap=CompressImage.compressImage(bitmap);
 	                img.setImageBitmap(RoundImage.roundImage(newbitmap));
 	            }
-	        }, 0, 0,ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+	        }, 80, 80,ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565, new Response.ErrorListener() {
 	           
 
 				@Override
