@@ -7,4 +7,5 @@
  </br>
 1.项目下载可移步： [下载地址](http://miller-wenjie.github.io/Tanxun)
 2.项目详情查看Tanxun的 [阅读Wiki](https://github.com/Miller-wenjie/Tanxun/wiki)
+3.APK下载：[apk](http://pre.im/Tanxunv1)
 
